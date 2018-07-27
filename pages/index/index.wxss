@@ -1,0 +1,33 @@
+.body {
+    margin: 10px;
+}
+
+.xiaoxi {
+    height: 1024rpx;
+    margin: 10px;
+    border: 1px solid #0000ff;
+}
+
+.xiaoxi text{    
+    border: 1px solid #5e5e5e;
+    background: #97c6f3;
+    width: 50%;
+}
+
+.say{
+    height: 50rpx;
+    margin: 10px;
+}
+
+.message {
+    border: 1px solid #5e5e5e;
+    width: 80%;
+    float: left;
+}
+
+.btn {
+    float: right;
+    font-size: 18rpx;
+    width: 15%;
+    height: 50rpx;
+}
