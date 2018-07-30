@@ -1,6 +1,8 @@
 {
     "pages": [
-      "pages/index/index"
+      "pages/index/index",
+      "pages/huabu/huabu"
+
     ],
     "window": {
       "navigationBarBackgroundColor": "#000000",

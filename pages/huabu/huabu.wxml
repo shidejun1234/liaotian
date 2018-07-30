@@ -1,0 +1,1 @@
+<canvas style="width: {{winWidth}}px; height: {{winHeight}}px;background:#00ff00;" canvas-id="ball"></canvas>
