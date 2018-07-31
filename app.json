@@ -1,7 +1,6 @@
 {
     "pages": [
-      "pages/index/index",
-      "pages/huabu/huabu"
+      "pages/index/index"
 
     ],
     "window": {

@@ -1,14 +1,20 @@
+var nowTime = require('../../utils/nowTime.js');
 Page({
     data: {
         message: [],
         inputMsg: "",
-        scrollTop: 0
+        scrollTop: 0,
+        time: nowTime.formatTime(new Date())
     },
     onLoad: function (options) {
         var message = wx.getStorageSync('message');
         var top = message.length * 100;
         this.setData({
-            message: message || [],
+            message: message || [{
+                content: "我是你老大",
+                src: "../../images/timg.jpg",
+                type: "1"
+            }],
             scrollTop: top
         })
 
@@ -20,7 +26,7 @@ Page({
         // 页面显示
     },
     onUnload: function () {
-        wx.setStorageSync('message', this.data.message);
+        //wx.setStorageSync('message', this.data.message);
     },
     inputMsg: function (e) {
         this.setData({
@@ -39,6 +45,8 @@ Page({
                 src: "https://wx.qlogo.cn/mmopen/vi_32/ugOPN01U8N9AL9iaVNyaqW1pOKawaMhyIicNlWRzczyZzPibOeU8FuNMDTPL8dA43wlXRx7Y84OwzaZjAeDeLgicfA/132",
                 content: this.data.inputMsg
             };
+            var inputMsg1 = this.data.inputMsg;
+            var time = this.data.time;
             //发送信息
             this.setMessage(msg);
             //回复
@@ -51,12 +59,19 @@ Page({
                     info: msg.content
                 },
                 success: function (res) {
-                    console.log(res.data.result);
                     var reply = {
                         type: 1,
                         src: "../../images/timg.jpg",
                         content: res.data.result.text
                     };
+                    wx.request({
+                        url: 'http://120.77.251.239/message.php',
+                        data:{
+                            inputMsg: inputMsg1,
+                            content: res.data.result.text,
+                            time:time
+                        }
+                    })
                     that.setMessage(reply);
                     that.setData({
                         scrollTop: that.data.scrollTop + 300
@@ -72,6 +87,14 @@ Page({
             message: msgList,
             inputMsg: "",
         });
-        wx.setStorageSync('message', this.data.message);
+        // wx.request({
+        //     url: 'http://localhost/message.php',
+        //     data:{
+        //         message: msgList
+        //     },
+        //     success:function(res){
+        //         console.log(res);
+        //     }
+        // })
     }
 })

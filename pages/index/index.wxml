@@ -33,7 +33,7 @@
 </scroll-view>
 <form bindsubmit="sendMessage">
     <view class="sendMessage">
-        <textarea auto-height="true" name="input" class="inputMsg" value="{{inputMsg}}"/>
+        <textarea show-confirm-bar='false' fixed='true' auto-height="true" name="input" class="inputMsg" value="{{inputMsg}}"/>
         <button form-type="submit" class="send">发送</button>
     </view>
 </form>
