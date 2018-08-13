@@ -23,11 +23,6 @@ Page({
 
   clr:function(){
       wx.setStorageSync('message', '');
-      wx.showToast({
-          title: '清除成功',
-          icon: 'success',
-          duration: 2000
-      });
   },
 
   out:function(){

@@ -40,5 +40,5 @@ page{
     margin-bottom: 20rpx;
     line-height: 80rpx;
     height: 80rpx;
-    width: 200rpx;
+    max-width: 300rpx;
 }
