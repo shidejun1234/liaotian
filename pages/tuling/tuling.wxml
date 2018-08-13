@@ -1,0 +1,26 @@
+<view class='page'>
+    <view class='top'>
+        <view class='top-img'>
+            <image src='{{img}}'></image>
+        </view>
+        <view class='top-text'>
+            <view class='top-text1'>
+                <text>图灵机器人</text>
+            </view>
+            <view class='top-text2'>
+                <text>微信号：hmC_43</text>
+            </view>
+        </view>
+    </view>
+    <view class='center'>
+        <view class='msg-btn'>
+            <button class="btn" bindtap='send'>发信息</button>
+        </view>
+        <view class='clr-btn'>
+            <button class="btn" bindtap='clr'>清除消息</button>
+        </view>
+        <view class='out-btn'>
+            <button class="btn" bindtap='out'>退出登录</button>
+        </view>
+    </view>
+</view>

@@ -4,7 +4,7 @@
         <block wx:if="{{item.type == 1}}">
             <view class="reply">
                 <view class="pic">
-                    <image src="{{item.src}}"></image>
+                    <image src="{{item.src}}" bindtap='aboutTuling'></image>
                 </view>
                 <view class="content">
                     <view class="text">

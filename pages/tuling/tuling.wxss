@@ -1,0 +1,44 @@
+/* pages/tuling/tuling.wxss */
+page{
+    background: #e5e5e5;
+}
+.top{
+    background: #ffffff;
+    margin: 0px auto;
+    margin-top: 100rpx;
+    height: 140rpx;
+}
+.top image{
+    float: left;
+    width: 100rpx;
+    height: 100rpx;
+    margin: 20rpx;
+}
+.top-text{
+    margin: 25rpx;
+    float: left;
+}
+.top-text1 text{
+    font-size: 30rpx;
+    clear: both;
+}
+.top-text2 text{
+    font-size: 25rpx;
+    color: #3e3e3e;
+    clear: both;
+}
+.center{
+    padding: 20rpx;
+    background: #ffffff;
+    margin: 0px auto;
+    margin-top: 100rpx;
+    clear: both;
+}
+.btn{
+    background: #0de360;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    line-height: 80rpx;
+    height: 80rpx;
+    width: 200rpx;
+}

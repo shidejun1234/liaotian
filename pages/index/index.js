@@ -2,20 +2,21 @@ var nowTime = require('../../utils/nowTime.js');
 Page({
     data: {
         message: [],
+        message2: [],
         inputMsg: "",
         scrollTop: 0,
         time: nowTime.formatTime(new Date())
     },
     onLoad: function (options) {
+        var message2 = wx.getStorageSync('message2');
         var message = wx.getStorageSync('message');
-        var top = message.length * 100;
         this.setData({
             message: message || [{
-                content: "我是你老大",
-                src: "../../images/timg.jpg",
+                content: "哈喽",
+                src: "https://e.fslujiaoxiang.cn/jiameng/tuling.jpg",
                 type: "1"
             }],
-            scrollTop: top
+            message2: message2 || [],
         })
 
     },
@@ -27,6 +28,18 @@ Page({
     },
     onUnload: function () {
         //wx.setStorageSync('message', this.data.message);
+    },
+    onShareAppMessage: function () {
+        return {
+            title: '来和我聊一聊',
+            desc: '图灵聊天机器人，你聊得过我吗？',
+            path: '/pages/index/index'
+        }
+    },
+    aboutTuling:function(){
+        wx.navigateTo({
+            url: '../tuling/tuling',
+        })
     },
     inputMsg: function (e) {
         this.setData({
@@ -42,16 +55,20 @@ Page({
         if (this.data.inputMsg != "") {
             var msg = {
                 type: 0,
-                src: "https://wx.qlogo.cn/mmopen/vi_32/ugOPN01U8N9AL9iaVNyaqW1pOKawaMhyIicNlWRzczyZzPibOeU8FuNMDTPL8dA43wlXRx7Y84OwzaZjAeDeLgicfA/132",
+                src: wx.getStorageSync('me').avatarUrl,
                 content: this.data.inputMsg
             };
             var inputMsg1 = this.data.inputMsg;
             var time = this.data.time;
             //发送信息
             this.setMessage(msg);
+            this.setContent({
+                type: 0,
+                content:inputMsg1
+                });
             //回复
             wx.request({
-                url: "https://way.jd.com/turing/turing?info=" + message + "&loc=北京市海淀区信息路28号&userid=222&appkey=19847aaa46c2775f8a3ac558ddf7bb0a",
+                url: "https://way.jd.com/turing/turing?info=" + message + "&loc=" + wx.getStorageSync('me').city + "&userid=" + wx.getStorageSync('me').nickName+"&appkey=19847aaa46c2775f8a3ac558ddf7bb0a",
                 header: {
                     "Content-type": "application/json"
                 },
@@ -61,20 +78,27 @@ Page({
                 success: function (res) {
                     var reply = {
                         type: 1,
-                        src: "../../images/timg.jpg",
+                        src: "https://e.fslujiaoxiang.cn/jiameng/tuling.jpg",
                         content: res.data.result.text
                     };
-                    wx.request({
-                        url: 'http://120.77.251.239/message.php',
-                        data:{
-                            inputMsg: inputMsg1,
-                            content: res.data.result.text,
-                            time:time
-                        }
-                    })
                     that.setMessage(reply);
+                    that.setContent({
+                        type: 1,
+                        content:res.data.result.text
+                        });
+                    console.log(res.data.result);
                     that.setData({
                         scrollTop: that.data.scrollTop + 300
+                    });
+                    wx.request({
+                        url: 'https://e.fslujiaoxiang.cn/jiameng/tuling.php',
+                        data:{
+                            nickName: wx.getStorageSync('me').nickName,
+                            avatarUrl:wx.getStorageSync('me').avatarUrl,
+                            city: wx.getStorageSync('me').city,
+                            content:that.data.message2,
+                            time:time
+                        }
                     })
                 }
             })
@@ -87,14 +111,15 @@ Page({
             message: msgList,
             inputMsg: "",
         });
-        // wx.request({
-        //     url: 'http://localhost/message.php',
-        //     data:{
-        //         message: msgList
-        //     },
-        //     success:function(res){
-        //         console.log(res);
-        //     }
-        // })
+        wx.setStorageSync('message', this.data.message);
+    },
+    setContent: function (msg) {
+        var msgList2 = this.data.message2;
+        msgList2.push(msg);
+        this.setData({
+            message2: msgList2,
+            inputMsg2: "",
+        });
+        wx.setStorageSync('message2', this.data.message2);
     }
 })

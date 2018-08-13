@@ -1,0 +1,6 @@
+/* pages/login/login.wxss */
+.btn{
+    background: #0de360;
+    margin: 200rpx auto;
+    width: 200rpx;
+}

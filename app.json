@@ -1,5 +1,7 @@
 {
     "pages": [
+      "pages/login/login",
+      "pages/tuling/tuling",
       "pages/index/index"
 
     ],
